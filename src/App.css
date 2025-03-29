@@ -11,12 +11,12 @@
 .xbox {
   background-image: url('./assets/xbox-loading.png');
   background-size: auto 100%;
-  animation: loadingAnimation 5s steps(35) forwards; /* Play once, stop at the end */
+  animation: loadingAnimation 2s steps(35) forwards; /* Play once, stop at the end */
   animation-fill-mode: forwards;
 }
 
 .xbox.expand-fade {
-    animation: expandAndFade 2s forwards; /* Xbox logo fades out and scales up */
+    animation: expandAndFade 1s forwards; /* Xbox logo fades out and scales up */
 }
 
 @keyframes logoAnimation {
@@ -28,7 +28,7 @@
   background-image: url('./assets/ziqing-steam-logo.png');
   background-size: auto 100%;
   /* Chaining the two animations together */
-  animation: fadeIn 2s forwards, logoAnimation 5s 2s steps(21) forwards;
+  animation: fadeIn 2s forwards, logoAnimation 2s 2s steps(21) forwards;
   /* fadeIn will run first, then logoAnimation will start after 2 seconds */
 }
 

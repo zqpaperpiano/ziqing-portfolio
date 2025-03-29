@@ -1,6 +1,86 @@
 @import "tailwindcss";
 
+
 body, html {
   margin: 0;
   padding: 0;
 }
+
+@theme {
+  ---primary-dark-blue: #1b2838;
+  ---section-bg-blue: #171a21;
+  ---highlight-bright-blue: #66c0f4;
+  ---sidebar-muted-blue: #2a475e;
+  ---background: #101820;
+  ---text-element-gray: #c5c3c0;
+  ---accent-red: #c62430;
+  ---accent-gold: #ffcc66;
+  ---unselected-font: #d5d7d8;
+
+  ---10p: 10%;
+  ---90p: 90%;
+}
+
+.normal-txt{
+  color: theme(---unselected-font);
+}
+
+.normal-txt:hover{
+  color: 'white';
+  cursor: pointer;
+}
+
+.section-bg{
+  background-color: theme(---background);
+}
+
+.sidebar-bg{
+  background-color: theme(---sidebar-muted-blue);
+}
+
+.main-bg{
+  background-color:theme(---section-bg-blue)
+}
+
+@font-face {
+  font-family: 'Motiva Sans';
+  src: url('./assets/fonts/MotivaSansBlack.woff.ttf') format('woff');
+  font-weight: 800;
+}
+
+@font-face{
+  font-family: 'Motiva Sans';
+  src: url('./assets/fonts/MotivaSansThin.ttf') format('woff');
+  font-weight: 200;
+}
+
+@font-face{
+  font-family: 'Motiva Sans';
+  src: url('./assets/fonts/MotivaSansLight.woff.ttf') format('woff');
+  font-weight: 300;
+}
+
+@font-face{
+  font-family: 'Motiva Sans';
+  src: url('./assets/fonts/MotivaSansRegular.woff.ttf') format('woff');
+  font-weight: 400;
+}
+
+@font-face{
+  font-family: 'Motiva Sans';
+  src: url('./assets/fonts/MotivaSansMedium.woff.ttf') format('woff');
+  font-weight: 500;
+}
+
+@font-face{
+  font-family: 'Motiva Sans';
+  src: url('./assets/fonts/MotivaSansBold.woff.ttf') format('woff');
+  font-weight: 600;
+}
+
+@font-face{
+  font-family: 'Motiva Sans';
+  src: url('./assets/fonts/MotivaSansExtraBold.ttf') format('woff');
+  font-weight: 700;
+}
+
