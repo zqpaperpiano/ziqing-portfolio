@@ -21,6 +21,10 @@ body, html {
   ---90p: 90%;
 }
 
+.selected-txt{
+  color: theme(---highlight-bright-blue);
+}
+
 .normal-txt{
   color: theme(---unselected-font);
 }
