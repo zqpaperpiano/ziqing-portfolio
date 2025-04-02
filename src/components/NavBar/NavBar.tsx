@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../../assets/logo-no-animation.png'
+import logo from '/assets/logo-no-animation.png';
 import { Github, Linkedin } from 'lucide-react';
 import { useLocation, useNavigate } from "react-router";
 
