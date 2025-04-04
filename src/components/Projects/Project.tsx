@@ -4,7 +4,6 @@ import ProjectList from './components/ProjectList';
 import { ListOfProjects } from '../../data/ListOfProjects';
 
 const Project: React.FC = () => {
-
     return(
         <div className="w-screen h-screen flex flex-col section-bg">
             
@@ -12,7 +11,7 @@ const Project: React.FC = () => {
                 <NavBar />
             </div>
 
-            <div className="w-full h-7/8 flex items-center justify-center font-[Motiva Sans] text-[#d7d7d2]">
+            <div className="w-full h-7/8 flex items-center justify-center font-[Motiva Sans] text-[#ffffff]">
                 <div className="h-full w-1/2 flex flex-col py-4 gap-4">
                     <div className="text-3xl font-medium"> PROJECTS </div>
                     <div className="text-lg font-regular text-[#8a9198]">Individual and group projects done by ziqing :)</div>
@@ -20,8 +19,8 @@ const Project: React.FC = () => {
                     <div className="h-flex-1 w-full flex flex-col gap-1">
                         {
                             ListOfProjects.map((project, index) => {
-                                return(
-                                    <ProjectList key={index} no={project.no} shopImg={project.shopImg} projectName={project.projectName} />
+                                return( 
+                                    <ProjectList key={index} project={project}/>
                                 )
                             })
                         }
