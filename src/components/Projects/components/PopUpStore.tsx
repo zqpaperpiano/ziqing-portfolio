@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { ProjectDetails } from '../../../types/projectType';
 import SkillTags from '../../SkillTags/SkillTags';
+import { motion } from 'framer-motion';
 
 interface PopUpStoreProps {
     project: ProjectDetails;
@@ -8,19 +9,42 @@ interface PopUpStoreProps {
 
 const PopUpStore: React.FC<PopUpStoreProps> = ({ project }) => {
     const detailBlock = useRef<HTMLDivElement>(null);
+    const skillBlock = useRef<HTMLDivElement>(null);
     const [shopTop, setShopTop] = useState<number>(0);
-    const popupBlock = useRef<HTMLDivElement>(null);
+    const noOfImg = project.bigStoreImages.length
+    const [currIndex, setCurrIndex] = useState<number>(0);
+    const [visibleCount, setVisibleCount] = useState(project.skills.length);
+    const storeWidth = useMemo(() => {
+        return noOfImg * 350;
+    }, [project]);
 
     useEffect(() => {
         setShopTop(210 - 40);
     })
     
 
-    const noOfImg = project.bigStoreImages.length
-    const [currIndex, setCurrIndex] = useState<number>(0);
-    const storeWidth = useMemo(() => {
-        return noOfImg * 350;
-    }, [project]);
+    useEffect(() => {
+        const container = skillBlock.current;
+        if(!container) return;
+        
+
+        const children = Array.from(container.children) as HTMLElement[];
+        let totalWidth = 0;
+        let maxWidth = container.offsetWidth;
+        let count = 0;
+
+        for(let i = 0; i < children.length; ++i){
+            totalWidth += children[i].offsetWidth + 4;
+            if(totalWidth > maxWidth) break;
+            count++;
+        }
+
+        if(count < project.skills.length){
+            count = Math.max(0, count - 1);
+        }
+
+        setVisibleCount(count);
+    }, [project])    
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -35,8 +59,11 @@ const PopUpStore: React.FC<PopUpStoreProps> = ({ project }) => {
 
     }, [currIndex, noOfImg]);
 
+    const hiddenCount = project.skills.length - visibleCount;
+
     return(
-        <div ref={popupBlock} className="relative h-full w-full">
+        <motion.div 
+        className="relative h-full w-full">
 
                 {/* store preview  */}
                 <div className='w-full h-[225px] overflow-x-hidden  '>
@@ -62,21 +89,24 @@ const PopUpStore: React.FC<PopUpStoreProps> = ({ project }) => {
                 <div ref={detailBlock} className="absolute bottom-0 w-full h-2/5 bg-[#2a3037] opacity-90 backdrop-blur-sm">
                     <div className="h-full w-full px-2 pt-[44px] pb-4 flex flex-col">
                         <div className="text-2xl font-medium text-[#ffffff]">{project.projectName}</div>
-                        <div className="w-full h-fit flex gap-1">
-                        {
-                            project.skills.map((skill, index) => {
-
-
-                                return(
-                                    <SkillTags key={index} skills={skill}/>
-                                )
-                            })
-                        }
+                            <div
+                            ref={skillBlock} className="w-full h-12 flex gap-1 mt-2">
+                            {
+                                project.skills.slice(0, visibleCount).map((skill, index) => {
+                                    return(
+                                        <SkillTags key={index} skills={skill} />
+                                    )
+                                })
+                            }
+                            {
+                                hiddenCount > 0 && 
+                                    <SkillTags skills={`+${hiddenCount}`} />
+                            }
                         </div>
                     </div>
                 </div>
 
-        </div>
+        </motion.div>
     )
 }
 

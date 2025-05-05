@@ -4,4 +4,7 @@ export type ProjectDetails = {
     projectName: string;
     bigStoreImages: string[];
     skills: string[];
+    snippet: string;
+    releaseDate: string;
+    lastUpdate: string;
 }
