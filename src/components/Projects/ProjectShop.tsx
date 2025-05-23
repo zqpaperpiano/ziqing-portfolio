@@ -6,6 +6,7 @@ import './projectShop.css'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import SkillTags from '../SkillTags/SkillTags';
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 
 interface ContainerWidth {
     left: number;
@@ -47,6 +48,20 @@ const ProjectShop: React.FC = () => {
         width: scrollBarContainer.current?.getBoundingClientRect().width || 0
     })
 
+    const descContainer = useRef<HTMLDivElement>(null);
+    const [descContainerHeight, setDescContainerHeight] = useState<number>(0);
+    const [readMore, setReadMore] = useState<boolean>(false);
+
+    useEffect(() => {
+        if(descContainerHeight > 200){
+            setReadMore(true);
+        }else{
+            setReadMore(false);
+        }
+    }, [descContainerHeight])
+
+
+
     //observer to monitor scroll bar container size changes
     useEffect(() => {
         const observer = new ResizeObserver(() => {
@@ -55,11 +70,16 @@ const ProjectShop: React.FC = () => {
                 right: scrollBarContainer.current?.getBoundingClientRect().right || 0,
                 width: scrollBarContainer.current?.getBoundingClientRect().width || 0
             })
+            setDescContainerHeight(descContainer.current?.getBoundingClientRect().height || 0);
         });
 
         if(scrollBarContainer.current) {
             observer.observe(scrollBarContainer.current);
         };
+
+        if(descContainer.current) {
+            observer.observe(descContainer.current);
+        }
 
         return () => observer.disconnect();
     }, [])
@@ -193,7 +213,7 @@ const ProjectShop: React.FC = () => {
                 <NavBar />
             </div>
 
-            <div className="w-2/3 h-7/8 flex flex-col p-2 gap-2 font-[Motiva Sans]">
+            <div className="w-[940px] h-7/8 flex flex-col p-2 gap-2 font-[Motiva Sans]">
 
                 {/* text part of page at the top */}
                 <div className="flex flex-col py-2">
@@ -212,7 +232,7 @@ const ProjectShop: React.FC = () => {
 
                 
                 {/* image and details part of page */}
-                <div className="h-[444px] w-[940px] flex relative gap-2">
+                <div className="h-[444px] w-full flex relative gap-2">
 
                     <div className="h-full w-full absolute flex z-0 bg-[#212c37] opacity-60 pointer-events-none z-0">
                     </div>
@@ -348,16 +368,37 @@ const ProjectShop: React.FC = () => {
                 <div className="w-full flex flex-col mt-12">
                     <div className="w-full flex flex-col gap-1">
                         <div className="text-white uppercase text-sm font-normal">About this project</div>
-
-                    <div className="w-full h-px bg-gradient-to-r from-[#3e6e89] to-[#213241]"></div>
+                        <div className="w-full h-px bg-gradient-to-r from-[#3e6e89] to-[#213241]"></div>
                     </div>
                     
 
-                    <div className="w-full text-[#8c939c] text-sm font-regular mt-2">
-                        <div>
+                    <div className="w-full relative ">
+                        <div ref={descContainer} className={`w-full text-[#8c939c] text-sm font-regular p-2 ${readMore ? '' : 'h-[200px] overflow-hidden'}`}>
                             {currProject.moreDetails || <p>More details coming soon!</p>} 
+                            
                         </div>
+
+                        {
+                            !readMore &&
+                            <>
+                            <div className="bg-black absolute w-full h-[30px] bottom-0 opacity-30">
+                            
+                            </div>
+                            <div className="absolute w-full h-[30px] bottom-0">
+                                <div className="h-full w-full relative">
+                                    <div 
+                                    onClick={() => setReadMore(true)}
+                                    className="absolute top-full right-0 flex flex-nowrap w-1/10 uppercase text-[#356598] text-xs z-50  items-center font-medium hover:cursor-pointer hover:text-white">read more
+                                    <KeyboardDoubleArrowDownIcon /> 
+                                    </div>
+                                </div>
+                            </div>
+                            </>
+                        }
                     </div>
+                    
+
+                    
                 </div>
 
 
