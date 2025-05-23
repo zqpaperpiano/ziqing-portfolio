@@ -86,21 +86,6 @@ const ProjectShop: React.FC = () => {
         determineTranslateX(currIndex);
     }, [viewedImage])
 
-//automatically changes translateX according to scroll bar position
-    // useEffect(() => {
-    //     if(scrollBarDraggable){
-            
-    //         const scrollBarScrollableDistance = containerWidth.width - 60;
-
-    //         if (scrollBarScrollableDistance <= 0) return;
-
-    //         const scrollBarRatio = scrollBarPos / scrollBarScrollableDistance;
-
-    //         const translate = -scrollBarRatio * fullGalleryWidth;
-            
-    //         setTranslateX(translate);
-    //     }
-    // }, [scrollBarPos, scrollBarDraggable, containerWidth, galleryWidth])
 
 //function to determine the translateX value for the image gallery
     const determineTranslateX = (index: number) => {
@@ -112,7 +97,7 @@ const ProjectShop: React.FC = () => {
 
         if(setNum === noOfSets && noOfSets > 0){
             const remainder = noOfImg - noOfSets * 5;
-            translate = -116 * 5 * (setNum - 1) - 116 * remainder - (2 * remainder) - 2;
+            translate = -116 * 5 * (setNum - 1) - 116 * remainder;
             newScrollBarPos = scrollBarScrollableDistance
         }
 
@@ -202,7 +187,7 @@ const ProjectShop: React.FC = () => {
 
 
     return(
-        <div className="w-screen h-screen flex flex-col items-center justify-center bg-gradient">
+        <div className="w-screen h-screen flex flex-col items-center justify-center pb-2 bg-gradient overflow-y-scroll scroll-bar">
             
             <div className="w-full h-1/8 main-bg sticky">
                 <NavBar />
@@ -337,6 +322,42 @@ const ProjectShop: React.FC = () => {
                         
                     </div>
 
+                </div>
+
+                {/* play game button */}
+                <div className="w-[940px] h-[65px] bg-[#53626f] mt-2 z-0 py-4 px-8 rounded-sm relative">
+                    <div className="text-white text-xl font-medium">Play {currProject.projectName}</div>
+
+                    <div className="bg-black w-1/2 h-2/3 rounded-xs absolute right-8 flex gap-1 p-1 flex-nowrap">
+                        <div className="w-1/3 flex items-center justify-center">
+                            <div className="text-[#c5d3de] font-medium text-center text-sm">Free To Play</div>
+                        </div>
+
+                        <div className="flex-1 flex items-center justify-center py-2 rounded-sm bg-gradient-to-r from-[#76af36] to-[#5b8b2b] text-[#d2efad] hover:cursor-pointer hover:from-[#90d542] hover:to-[#6da834] hover:text-white">
+                            <div className=" font-medium text-center text-sm">Play Game</div>
+                        </div>
+
+                        <div className="flex-1 flex flex-nowrap items-center justify-center p-2 rounded-sm bg-gradient-to-r from-[#46a1eb] to-[#2f62cb] text-[#c5e1f6] hover:cursor-pointer hover:text-white hover:from-[#52c0fa] hover:to-[#3f8de1]">
+                            <div className="font-medium text-center text-sm whitespace-nowrap">Add To Library</div>
+                        </div>
+
+                    </div>
+                </div>
+
+                {/* more about the project */}
+                <div className="w-full flex flex-col mt-12">
+                    <div className="w-full flex flex-col gap-1">
+                        <div className="text-white uppercase text-sm font-normal">About this project</div>
+
+                    <div className="w-full h-px bg-gradient-to-r from-[#3e6e89] to-[#213241]"></div>
+                    </div>
+                    
+
+                    <div className="w-full text-[#8c939c] text-sm font-regular mt-2">
+                        <div>
+                            {currProject.moreDetails || <p>More details coming soon!</p>} 
+                        </div>
+                    </div>
                 </div>
 
 

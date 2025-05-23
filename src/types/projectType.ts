@@ -7,4 +7,5 @@ export type ProjectDetails = {
     snippet: string;
     releaseDate: string;
     lastUpdate: string;
+    moreDetails?: React.ReactNode;
 }

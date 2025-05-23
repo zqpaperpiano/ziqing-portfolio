@@ -45,3 +45,26 @@
   from { opacity: 1; }
   to { opacity: 0; } /* Fade-out for the word logo */
 }
+
+
+.scroll-bar::-webkit-scrollbar-button{
+  display: none;
+}
+
+.scroll-bar::-webkit-scrollbar-thumb{
+  background: #434953;
+  border-radius: 10px;
+  border: 2px solid #434953;
+  width: 5px;
+}
+
+.scroll-bar::-webkit-scrollbar{
+  width: 8px;
+}
+
+.scroll-bar::-webkit-scrollbar-track{
+  background-color: black;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
