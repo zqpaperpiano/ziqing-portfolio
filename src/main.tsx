@@ -5,6 +5,7 @@ import './index.css'
 import App from './App.tsx'
 import Project from './components/Projects/Project.tsx';
 import ProjectShop from './components/Projects/ProjectShop.tsx';
+import Ziqing from './components/Ziqing/Ziqing.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -13,6 +14,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path="/" element={<App />} />
         <Route path="/projects" element={<Project />} />
         <Route path="/projects/:id" element={<ProjectShop />} />
-       </Routes>
+        <Route path="/ziqing" element={<Ziqing />} />
+        </Routes>
     </BrowserRouter>
 )

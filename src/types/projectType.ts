@@ -8,4 +8,6 @@ export type ProjectDetails = {
     releaseDate: string;
     lastUpdate: string;
     moreDetails?: React.ReactNode;
+    githubLink: string;
+    productLink?: string;
 }

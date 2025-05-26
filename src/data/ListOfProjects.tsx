@@ -52,7 +52,9 @@ export const ListOfProjects: ProjectDetails[] = [
             <li>Increased gamified components</li>
             <li>Connecting to Google Calendar</li>
             </>
-        )
+        ),
+        githubLink: 'https://github.com/zqpaperpiano/ziqing-s-planner',
+        productLink: 'https://ziqing-s-planner.onrender.com/'
     
     },
     {
@@ -73,6 +75,7 @@ export const ListOfProjects: ProjectDetails[] = [
         ],
         snippet: 'This is a ticketing website that allows users to book tickets for movies and events. I was mainly focused on the front end aspect of this project',
         releaseDate: '15 Sep 2023',
-        lastUpdate: '15 Sep 2023'
+        lastUpdate: '15 Sep 2023',
+        githubLink: 'https://github.com/zqpaperpiano/tix-front-end'
     }
 ]

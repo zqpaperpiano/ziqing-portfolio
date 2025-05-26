@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState, useRef, useCallback } from 'react';
 import NavBar from '../NavBar/NavBar';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { ListOfProjects } from '../../data/ListOfProjects';
 import './projectShop.css'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
@@ -51,6 +51,7 @@ const ProjectShop: React.FC = () => {
     const descContainer = useRef<HTMLDivElement>(null);
     const [descContainerHeight, setDescContainerHeight] = useState<number>(0);
     const [readMore, setReadMore] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(descContainerHeight > 200){
@@ -203,8 +204,6 @@ const ProjectShop: React.FC = () => {
       }, [scrollBarDraggable]);   
 
 
-    
-
 
     return(
         <div className="w-screen h-screen flex flex-col items-center justify-center pb-2 bg-gradient overflow-y-scroll scroll-bar">
@@ -346,19 +345,28 @@ const ProjectShop: React.FC = () => {
 
                 {/* play game button */}
                 <div className="w-[940px] h-[65px] bg-[#53626f] mt-2 z-0 py-4 px-8 rounded-sm relative">
-                    <div className="text-white text-xl font-medium">Play {currProject.projectName}</div>
+                    <div className="text-white text-xl font-medium">Visit {currProject.projectName}</div>
 
                     <div className="bg-black w-1/2 h-2/3 rounded-xs absolute right-8 flex gap-1 p-1 flex-nowrap">
                         <div className="w-1/3 flex items-center justify-center">
                             <div className="text-[#c5d3de] font-medium text-center text-sm">Free To Play</div>
                         </div>
 
-                        <div className="flex-1 flex items-center justify-center py-2 rounded-sm bg-gradient-to-r from-[#76af36] to-[#5b8b2b] text-[#d2efad] hover:cursor-pointer hover:from-[#90d542] hover:to-[#6da834] hover:text-white">
-                            <div className=" font-medium text-center text-sm">Play Game</div>
-                        </div>
+                        {
+                            currProject.productLink &&
+                            <div className="flex-1 flex items-center justify-center py-2 rounded-sm bg-gradient-to-r from-[#76af36] to-[#5b8b2b] text-[#d2efad] hover:cursor-pointer hover:from-[#90d542] hover:to-[#6da834] hover:text-white">
+                                <a href={currProject.productLink} target="_blank" className="h-full w-full flex items-center justify-center">
+                                 <div className=" font-medium text-center text-sm">Play Game</div>
+                                </a>
+                            </div>
+
+                        }
+                        
 
                         <div className="flex-1 flex flex-nowrap items-center justify-center p-2 rounded-sm bg-gradient-to-r from-[#46a1eb] to-[#2f62cb] text-[#c5e1f6] hover:cursor-pointer hover:text-white hover:from-[#52c0fa] hover:to-[#3f8de1]">
-                            <div className="font-medium text-center text-sm whitespace-nowrap">Add To Library</div>
+                            <a href={currProject.githubLink} target="_blank" className="h-full w-full flex items-center justify-center">
+                                <div className="font-medium text-center text-sm whitespace-nowrap">View Github</div>
+                            </a>
                         </div>
 
                     </div>
@@ -396,6 +404,8 @@ const ProjectShop: React.FC = () => {
                             </>
                         }
                     </div>
+
+                    <div className="w-full h-12"></div>
                     
 
                     
