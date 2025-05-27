@@ -1,6 +1,7 @@
 export type ProjectDetails = {
     no: number;
     shopImg: string;
+    repoName: string;
     projectName: string;
     bigStoreImages: string[];
     skills: string[];

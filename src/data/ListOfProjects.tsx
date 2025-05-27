@@ -4,6 +4,7 @@ export const ListOfProjects: ProjectDetails[] = [
     {
         no: 1,
         shopImg: '/assets/planner-store-small-image.png',
+        repoName: 'ziqing-s-planner',
         projectName: 'Cozy Planner',
         bigStoreImages: [
             '/assets/planner-big-store-1.png',
@@ -61,6 +62,7 @@ export const ListOfProjects: ProjectDetails[] = [
         no: 2,
         shopImg: '/assets/tix-store-small.png',
         projectName: 'Tix',
+        repoName: 'tix-front-end',
         bigStoreImages: [
             '/assets/tix-big-store-1.png',
             '/assets/tix-big-store-2.png',
