@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from "react"
+import React, { useContext, useEffect, useRef } from "react"
 import NavBar from "../NavBar/NavBar";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { AnimatePresence, motion } from "framer-motion";
 import RecentActivityCard from "./components/RecentActivityCard";
 import { repoListType } from "../../types/repoListType";
+import { useNavigate } from "react-router";
+import { RepoContext } from "../../contexts/repoContext";
 
 const Ziqing: React.FC = () => {
     const [moreNames, setMoreNames] = React.useState<boolean>(false);
@@ -33,95 +35,15 @@ const Ziqing: React.FC = () => {
         }
     }
 
-    const [repoList, setRepoList] = React.useState<repoListType[]>([]);
+    const  repoList  = useContext(RepoContext);
     const [showedActivity, setShowedActivity] = React.useState<repoListType[]>([]);
-    const sessionStorageKey = 'repoList';
+    const navigate = useNavigate();
 
-    // Fetch repo list from backend
     useEffect(() => {
-        const fetchRepoList = async () => {
-            try{
-                const tempRepoList = [];
-                const resp = await fetch('http://localhost:3000/repos', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-
-                if(resp.ok){
-                    const data = await resp.json();
-                    tempRepoList.push(...data);
-
-                    if(tempRepoList.length > 0){
-                        let addedCommitRepoList = tempRepoList.map(async repo => {
-                            return  await fetchCommitList(repo);
-                        })
-
-                        let unfilteredRepoList = await Promise.all(addedCommitRepoList);
-
-                        const filteredRepoList: repoListType[] = unfilteredRepoList.filter((repo): repo is repoListType =>{
-                            if(!repo) return false;
-
-                            return typeof repo.numCommits === 'number' && repo.numCommits > 0;
-                        })
-                        .sort((a, b) => {
-                            const dateA = a ? new Date(a.lastUpdated) : new Date(0);
-                            const dateB = b ? new Date(b.lastUpdated) : new Date(0);
-
-                            return dateB.getTime() - dateA.getTime();
-                        })
-
-                        setRepoList(filteredRepoList);
-                        setShowedActivity(filteredRepoList.slice(0, 3));
-                        sessionStorage.setItem(sessionStorageKey, JSON.stringify(filteredRepoList));
-                    }
-                }
-            }catch(err){
-                console.log('Error fetching repo list: ', err);
-            }
+        if(repoList.length > 0){
+            setShowedActivity(repoList.slice(0, 3));
         }
-
-        const cachedData = sessionStorage.getItem(sessionStorageKey);
-        if(cachedData){
-            const parsedData: repoListType[] = JSON.parse(cachedData);
-            setRepoList(parsedData);
-            setShowedActivity(parsedData.slice(0, 3));
-            return;
-        }
-
-        fetchRepoList();
-    }, [])
-
-    const fetchCommitList = async (repo: repoListType) => {
-        try{
-            const resp = await fetch(`http://localhost:3000/repos/${repo.name}/commits`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            if(resp.ok){
-                const data = await resp.json();
-                let numCommits = 0;
-
-                data.forEach(commit => {
-                    if(commit.commit.author.name === 'Ong Zi Qing' || commit.commit.author.name === 'zqpaperpiano' || commit.commit.author.name === 'Github'){
-                        numCommits++;
-                    }
-                })
-                // const numCommits = data.length;
-                return {...repo, numCommits}
-            }
-
-            if(resp.status === 409){
-                return {...repo, numCommits: 0};
-            }
-        }catch(err){
-            console.log('Error fetching commit list: ', err);
-        }
-    }
+    }, [repoList])
 
     // checking if user clicks outside of the more options boxes
     useEffect(() => {
@@ -223,19 +145,28 @@ const Ziqing: React.FC = () => {
                     </div>
 
                     <div className="w-full flex-1 z-50 px-4 pb-2">
-                        <div className="w-full flex flex-col gap-2 bg-[#192429] min-h-full  ">
+                        <div className="w-full flex-col gap-2 bg-[#192429]">
+
                             {/* recent activitiy header */}
                             <div className="w-full h-12 bg-gradient-to-r from-[#30484e] to-[#2a2c41] flex items-center p-2 text-white font-regular text-lg">Recent Activity</div>
-
                             {
                                 showedActivity.length > 0 &&
                                 showedActivity.map((repo, index) => {
                                     return(
-                                        <RecentActivityCard key={index} activity={repo} />
+                                        <RecentActivityCard key={index} activity={repo} picHeight={69} picWidth={184}/>
                                     )
                                 })
                             }
+
+                            <div className="flex-1 w-full flex items-end justify-end p-2 flex gap-2">
+                                <button 
+                                onClick={() => {navigate('/ziqing/projects/recently-active')}}
+                                className="text-white font-regular hover:text-[#63baec] text-sm"> View All Activity</button>
+                            </div>
+                            
                         </div>
+
+
 
                     </div>
                 </div>
