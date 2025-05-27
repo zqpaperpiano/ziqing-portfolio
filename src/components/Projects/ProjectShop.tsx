@@ -208,7 +208,7 @@ const ProjectShop: React.FC = () => {
     return(
         <div className="w-screen h-screen flex flex-col items-center justify-center pb-2 bg-gradient overflow-y-scroll scroll-bar">
             
-            <div className="w-full h-1/8 main-bg sticky">
+            <div className="w-full h-1/8 main-bg sticky z-50">
                 <NavBar />
             </div>
 
@@ -237,9 +237,9 @@ const ProjectShop: React.FC = () => {
                     </div>
 
                     {/* image area */}
-                    <div className="h-full w-[616px] flex flex-col gap-1 z-50">
+                    <div className="h-full w-[616px] flex flex-col gap-1 z-40">
                         {/* big picture */}
-                        <div className="w-full h-[337px] object-cover z-50 bg-white select-none">
+                        <div className="w-full h-[337px] object-cover z-40 bg-white select-none">
                             <img src={currProject.bigStoreImages[viewedImage]} draggable="false" className="h-full w-full object-fit" />
                         </div>
 
@@ -298,7 +298,7 @@ const ProjectShop: React.FC = () => {
                     </div>
 
                     {/* details area */}
-                    <div className="h-[432px] flex-1 flex flex-col z-50 gap-2">
+                    <div className="h-[432px] flex-1 flex flex-col z-40 gap-2">
 
                             {/* store image */}
                         <div className="w-full h-[154px]">
@@ -396,7 +396,7 @@ const ProjectShop: React.FC = () => {
                                 <div className="h-full w-full relative">
                                     <div 
                                     onClick={() => setReadMore(true)}
-                                    className="absolute top-full right-0 flex flex-nowrap w-1/10 uppercase text-[#356598] text-xs z-50  items-center font-medium hover:cursor-pointer hover:text-white">read more
+                                    className="absolute top-full right-0 flex flex-nowrap w-1/10 uppercase text-[#356598] text-xs z-40  items-center font-medium hover:cursor-pointer hover:text-white">read more
                                     <KeyboardDoubleArrowDownIcon /> 
                                     </div>
                                 </div>

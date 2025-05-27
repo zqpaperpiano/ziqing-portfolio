@@ -65,7 +65,7 @@ const Ziqing: React.FC = () => {
     return(
         <div className="w-screen h-screen flex flex-col items-center justify-center overflow-y-auto scroll-bar">
 
-            <div className="w-full h-1/8 main-bg sticky">
+            <div className="w-full h-1/8 main-bg sticky z-50">
                 <NavBar />
             </div>
 
@@ -81,7 +81,7 @@ const Ziqing: React.FC = () => {
                     <div className="absolute h-full w-full bg-[#24212d] opacity-80 z-0"></div>
 
                     {/* header portion (name and pfp) */}
-                    <div className="w-full h-[224px] flex z-50">
+                    <div className="w-full h-[224px] flex z-40">
                         {/* name & pfp */}
                         <div className="h-full w-2/3 flex p-8 gap-8">
                             <div className="aspect-square h-[164px] border border-[#4e98b5] border-4">
@@ -144,7 +144,7 @@ const Ziqing: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="w-full flex-1 z-50 px-4 pb-2">
+                    <div className="w-full flex-1 z-40 px-4 pb-2">
                         <div className="w-full flex-col gap-2 bg-[#192429]">
 
                             {/* recent activitiy header */}

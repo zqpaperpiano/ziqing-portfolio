@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { repoListType } from "../../../types/repoListType";
 import { ListOfProjects } from "../../../data/ListOfProjects";
+import { useNavigate } from "react-router";
 
 const RecentActivityCard: React.FC<{ activity: repoListType, picHeight?:number, picWidth?:number }> = ({ activity, picHeight, picWidth }) => {
     const lastUpdatedDate = new Date(activity.lastUpdated).toDateString().split(' ');
@@ -9,6 +10,8 @@ const RecentActivityCard: React.FC<{ activity: repoListType, picHeight?:number, 
     const [inShop, setInShop] = useState<boolean>(false);
     const [shopName, setShopName] = useState<string>();
     const [shopPic, setShopPic] = useState<string>('');
+    const [repoIdx, setRepoIdx] = useState<number>(0);
+    const navigate = useNavigate();
 
     useEffect(() => {
         ListOfProjects.forEach((project) => {
@@ -16,6 +19,7 @@ const RecentActivityCard: React.FC<{ activity: repoListType, picHeight?:number, 
                 setInShop(true);
                 setShopName(project.projectName);
                 setShopPic(project.shopImg);
+                setRepoIdx(project.no);
             }
         })
     }, [])
@@ -28,13 +32,22 @@ const RecentActivityCard: React.FC<{ activity: repoListType, picHeight?:number, 
                         {inShop ? (
                             <img src={shopPic} className="h-full w-full object-cover" />
                         ) : 
-                        <div className="h-full w-full flex items-center justify-center font-medium bg-black text-white text-sm">
-                            {inShop ? shopName : activity.name}
+                        <div className="h-full w-full flex flex-col items-center justify-center font-medium bg-black text-white text-sm">
+                            <div>No image available</div>
+                            <div>Not in shop</div>
                         </div>
                         }
                     </div>
-                    <div className="flex items-start hover:cursor-pointer text-lg hover:text-[#63baec]">
-                        <a href={activity.html_url} target="_blank">{inShop ? shopName : activity.name}</a>
+                    <div 
+                    onClick={() => {
+                        if(inShop){
+                            navigate(`/projects/${repoIdx}`)
+                        }else{
+                            window.open(activity.html_url, '_blank', 'noopener,noreferrer');
+                        }
+                    }}
+                    className="flex items-start hover:cursor-pointer text-lg hover:text-[#63baec]">
+                        {inShop ? shopName : activity.name}
                         </div>
                 </div>
 

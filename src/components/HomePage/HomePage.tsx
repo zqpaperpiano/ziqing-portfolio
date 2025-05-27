@@ -8,7 +8,7 @@ const HomePage: React.FC = () => {
             
             {/* top half of main page */}
             <div className="w-full h-1/8">
-                <NavBar />
+                w
             </div>
 
             {/* bottom half of main page */}
