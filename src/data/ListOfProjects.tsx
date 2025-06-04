@@ -26,7 +26,9 @@ export const ListOfProjects: ProjectDetails[] = [
             'Express.js',
             'React Router',
             'MUI',
-            'Luicide React'
+            'Luicide React',
+            'Docker',
+            'Framer Motion'
         ],
         snippet: 'This is a planner that takes on an adventurering theme to help track big goals and break them into smaller and doable tasks.',
         releaseDate: '29 Mar 2025',
