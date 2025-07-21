@@ -11,7 +11,7 @@ export const RepoProvider: React.FC<{ children: React.ReactNode; }> = ({ childre
             const fetchRepoList = async () => {
                 try{
                     const tempRepoList = [];
-                    const resp = await fetch('https://portfolio-backend-at57.onrender.com/repos', {
+                    const resp = await fetch('http://localhost:3000/repos', {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json'
@@ -53,8 +53,11 @@ export const RepoProvider: React.FC<{ children: React.ReactNode; }> = ({ childre
             const cachedData = sessionStorage.getItem(sessionStorageKey);
             if(cachedData){
                 const parsedData: repoListType[] = JSON.parse(cachedData);
-                setRepoList(parsedData);
-                return;
+                
+                if(parsedData.length > 0) {
+                  setRepoList(parsedData);
+                  return;
+                }
             }
     
             fetchRepoList();
@@ -62,7 +65,7 @@ export const RepoProvider: React.FC<{ children: React.ReactNode; }> = ({ childre
 
         const fetchCommitList = async (repo: repoListType) => {
         try{
-            const resp = await fetch(`https://portfolio-backend-at57.onrender.com/repos/${repo.name}/commits`, {
+            const resp = await fetch(`http://localhost:3000/repos/${repo.name}/commits`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'

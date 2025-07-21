@@ -75,7 +75,7 @@ const AllRecentActivity: React.FC = () => {
                     <div className="h-[5px] w-full bg-[#417b9c]"></div>
                 </div>
 
-                <div className="w-[941px] flex flex-col">
+                <div className="w-[941px] flex flex-col text-white">
                         {
                         activeTab === 'recently-active' ? (
                             recentRepo.length > 0 ? (
@@ -95,7 +95,7 @@ const AllRecentActivity: React.FC = () => {
                                     )
                                 })
                             ) : (
-                                <div>There was an error in retrieving the repositories. Please try again later.</div>
+                                <div className="text-white">There was an error in retrieving the repositories. Please try again later.</div>
                             )
                         )
                     }

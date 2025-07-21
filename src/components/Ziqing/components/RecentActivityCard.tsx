@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { repoListType } from "../../../types/repoListType";
 import { ListOfProjects } from "../../../data/ListOfProjects";
 import { useNavigate } from "react-router";
+import { createAvatar } from "@dicebear/core";
+import { shapes } from "@dicebear/collection";
 
 const RecentActivityCard: React.FC<{ activity: repoListType, picHeight?:number, picWidth?:number }> = ({ activity, picHeight, picWidth }) => {
     const lastUpdatedDate = new Date(activity.lastUpdated).toDateString().split(' ');
@@ -12,6 +14,41 @@ const RecentActivityCard: React.FC<{ activity: repoListType, picHeight?:number, 
     const [shopPic, setShopPic] = useState<string>('');
     const [repoIdx, setRepoIdx] = useState<number>(0);
     const navigate = useNavigate();
+    const { svgString } = useMemo(() => {
+
+        const getRandomRotation = () => {
+                const randomFactor = Math.floor(Math.random() * 37);
+                return randomFactor * 10;
+            }
+
+        const getRandomColor = () => {
+            const r  = Math.floor(Math.random() * 256);
+            const g  = Math.floor(Math.random() * 256);
+            const b  = Math.floor(Math.random() * 256);
+
+            const hexR = r.toString(16).padStart(2, '0');
+            const hexG = g.toString(16).padStart(2, '0');
+            const hexB = b.toString(16).padStart(2, '0');
+
+            return `${hexR}${hexG}${hexB}`;
+        }
+
+        const rotation = getRandomRotation();
+        const color1 = getRandomColor();
+        const color2 = getRandomColor();
+        const color3 = getRandomColor();
+
+        const avatar = createAvatar(shapes, {
+            seed: activity.name, // use activity.name for uniqueness
+            rotate: rotation,
+            backgroundColor: [color1, color2, color3],
+            backgroundType: ['gradientLinear']
+        });
+
+        return {
+            svgString: avatar.toString()
+        };
+    }, [activity.name]);
 
     useEffect(() => {
         ListOfProjects.forEach((project) => {
@@ -32,9 +69,8 @@ const RecentActivityCard: React.FC<{ activity: repoListType, picHeight?:number, 
                         {inShop ? (
                             <img src={shopPic} className="h-full w-full object-cover" />
                         ) : 
-                        <div className="h-full w-full flex flex-col items-center justify-center font-medium bg-black text-white text-sm">
-                            <div>No image available</div>
-                            <div>Not in shop</div>
+                        <div className="h-full w-full flex flex-col items-center justify-center font-medium bg-black text-white text-sm overflow-hidden">
+                            <div dangerouslySetInnerHTML={{__html: svgString}} className="h-full w-full object-fit"/>
                         </div>
                         }
                     </div>

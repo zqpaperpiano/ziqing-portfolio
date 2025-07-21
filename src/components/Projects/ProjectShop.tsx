@@ -206,7 +206,7 @@ const ProjectShop: React.FC = () => {
 
 
     return(
-        <div className="w-screen h-screen flex flex-col items-center justify-center pb-2 bg-gradient overflow-y-scroll scroll-bar">
+        <div className="w-screen h-screen flex flex-col items-center justify-center pb-2 overflow-y-scroll scroll-bar">
             
             <div className="w-full h-1/8 main-bg sticky z-50">
                 <NavBar />
