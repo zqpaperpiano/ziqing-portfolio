@@ -133,10 +133,11 @@ const Ziqing: React.FC = () => {
                                         animate={{ opacity: 1}}
                                         exit={{opacity: 0}}
                                         transition={{duration: 0.5, ease: "easeInOut"}}
-                                        className="absolute top-full left-0 w-fit h-fit bg-[#171a21] shadow-xl flex flex-col text-xs font-medium">
-                                            <div className="hover:cursor-pointer hover:bg-[white] hover:text-black p-2"><a href="https://www.linkedin.com/in/zi-qing-ong-920449233/" target="_blank">View LinkedIn</a></div>
-                                            <div className="hover:cursor-pointer hover:bg-[white] hover:text-black p-2"><a href="https://github.com/zqpaperpiano" target="_blank">View GitHub</a></div>
-                                            <div className="hover:cursor-pointer hover:bg-[white] hover:text-black p-2"><a href="https://steamcommunity.com/profiles/76561198310634481/" target="_blank">View Actual Steam Profile</a></div>
+                                        className="absolute top-full left-0 w-fit h-fit bg-[#171a21] shadow-xl flex flex-col text-xs font-medium z-40">
+                                            <a className="hover:cursor-pointer hover:bg-[white] hover:text-black p-2" href="https://www.linkedin.com/in/zi-qing-ong-920449233/" target="_blank">View LinkedIn</a>
+                                            <a className="hover:cursor-pointer hover:bg-[white] hover:text-black p-2" href="https://github.com/zqpaperpiano" target="_blank">View GitHub</a>
+                                            <a className="hover:cursor-pointer hover:bg-[white] hover:text-black p-2" href="https://steamcommunity.com/profiles/76561198310634481/" target="_blank">View Actual Steam Profile</a>
+                                            <a className="hover:cursor-pointer hover:bg-[white] hover:text-black p-2" href="/Ong_Zi_Qing(NT_17_Jul_25).pdf" download="Ong_Zi_Qing_Resume.pdf" target="_blank">Get Resume</a>
                                         </motion.div>
                                     }
                                 </AnimatePresence>
@@ -144,11 +145,11 @@ const Ziqing: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="w-full flex-1 z-40 px-4 pb-2">
+                    <div className="w-full flex-1 z-30 px-4 pb-2">
                         <div className="w-full flex-col gap-2 bg-[#192429]">
 
                             {/* recent activitiy header */}
-                            <div className="w-full h-12 bg-gradient-to-r from-[#30484e] to-[#2a2c41] flex items-center p-2 text-white font-regular text-lg">Recent Activity</div>
+                            <div className="w-full h-12 bg-gradient-to-r from-[#30484e] to-[#2a2c41] flex items-center p-2 text-white font-regular text-lg">Recent Projects</div>
                             {
                                 showedActivity.length > 0 &&
                                 showedActivity.map((repo, index) => {

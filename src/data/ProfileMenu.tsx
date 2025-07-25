@@ -1,4 +1,5 @@
 export const ProfileMenu: string[] = [
     'Projects',
-    'Past Experiences'
+    'Experiences',
+    'About Me'
 ]

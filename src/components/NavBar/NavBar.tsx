@@ -86,7 +86,7 @@ const NavBar: React.FC = () => {
                     <div className={`hover:cursor-pointer ${location.pathname === '/projects' ? 'selected-txt underline underline-offset-[3px] decoration-[2px] decoration-solid' : 'hover:text-white text-[#d5d7d8]'}`} onClick={() => navigate('/projects')}>PROJECTS</div>
                     <div 
                     ref={profileBtnRef}
-                    className={`h-full flex items-center hover:cursor-pointer ${location.pathname === '/ziqing' ? 'selected-txt underline underline-offset-[3px] decoration-[2px] decoration-solid' : 'hover:text-white text-[#d5d7d8]'}`} onClick={() => navigate('/ziqing')}>ZIQING
+                    className={`h-full flex items-center hover:cursor-pointer ${location.pathname === '/ziqing' ? 'selected-txt underline underline-offset-[3px] decoration-[2px] decoration-solid' : 'hover:text-white text-[#d5d7d8]'}`}>ZIQING
                         <div className="w-full h-full relative bg-white">
                             {
                                 onProfileBtn &&
@@ -95,7 +95,10 @@ const NavBar: React.FC = () => {
                                 className="absolute top-full -left-17 gap-4 h-fit z-50 flex flex-col p-4 bg-gradient-to-b from-[#515f70] to-[#2b3947] shadow-lg">
                                     {
                                         Object.entries(ProfileMenu).map(([index, menuObj]) => (
-                                            <div key={index} className="flex flex-col gap-2">
+                                            <div key={index} className="flex flex-col gap-2" 
+                                            onClick={() => {
+                                                navigate(`/ziqing/${menuObj.toLowerCase()}`)
+                                            }}>
                                                 <div className="text-[#c8c9cb] text-sm hover:cursor-pointer hover:text-white hover:underline hover:underline-offset-4 hover:decoration-2">{menuObj}</div>
                                             </div>
                                         ))
