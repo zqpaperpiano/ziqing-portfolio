@@ -3,6 +3,7 @@ import NavBar from "../NavBar/NavBar";
 import { useParams } from "react-router";
 import { ListOfProjects } from "../../data/ListOfProjects";
 import SkillCarousel from "./components/SkillCarousel";
+import Paginator from "./components/Paginator";
 
 const Skills:React.FC = () => {
     const {category, skill} = useParams<{category: string, skill: string}>();
@@ -28,12 +29,18 @@ const Skills:React.FC = () => {
                 <div className="w-full h-full absolute top-0 section-bg opacity-90 z-30"></div>
                 <div className="w-7/8 h-full flex flex-col items-center justify-center gap-4 z-40">
 
-                    <div className="w-full h-1/5 flex items-center justify-center text-center text-5xl text-white font-bold uppercase z-40">
+                    <div className="w-full h-1/7     flex items-center justify-center text-center text-5xl text-white font-bold uppercase z-40">
                         {skill}
                     </div>
 
-                    <div className="w-full h-4/5 flex items-center justify-center z-40">
-                        <SkillCarousel />
+                    <div className="w-full h-6/7 flex flex-col items-center justify-center z-40">
+                        <div className="w-full h-4/5">
+                            <SkillCarousel />
+                        </div>
+
+                        <div className="w-full h-1/5 flex items-center justify-center">
+                            <Paginator total={5} curr={1} />
+                        </div>
                     </div>
                 </div>
                 

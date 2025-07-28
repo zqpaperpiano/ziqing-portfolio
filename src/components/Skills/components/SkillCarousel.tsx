@@ -1,26 +1,37 @@
+import { useNavigate } from "react-router";
 import { ListOfProjects } from "../../../data/ListOfProjects";
 import SkillTags from "../../SkillTags/SkillTags";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 
 const SkillCarousel = () => {
     const tempProject = ListOfProjects[0];
+    const navigate = useNavigate();
 
     return(
         <div className="h-full w-full flex items-center justify-center">
 
             {/* left arrow */}
+            <div className="h-full w-12 flex items-center justify-center">
+                <KeyboardArrowLeftIcon sx={{ fontSize: 108, color: 'white'}} />   
+            </div>
 
             {/* actual carousel content */}
             <div className="h-full w-6/8 bg-[#292d36] flex shadow-xl">
                 {/* image/video content here */}
-                <div className="h-full w-2/3">
+                <div 
+                onClick={() => navigate(`/projects/${tempProject.no}`)}
+                className="h-full w-2/3">
                     <img src={tempProject.bigStoreImages[0]} className="h-full w-full object-fit" /> 
                 </div>
 
                 {/* text description here */}
                 <div className="h-full w-1/3 flex flex-col justify-center z-30">
                     <div className="h-1/2 w-full relative mb-8">
-                        <div className="h-full w-full absolute right-8 top-4 z-50 shadow-3xl">
+                        <div 
+                        onClick={() => navigate(`/projects/${tempProject.no}`)}
+                        className="h-full w-full absolute right-8 top-4 z-50 shadow-3xl">
                             <img src={tempProject.shopImg} className="h-full w-full object-fit" />
                         </div> 
                     </div> 
@@ -39,6 +50,9 @@ const SkillCarousel = () => {
             </div>
 
             {/* right arrow */}
+            <div className="h-full w-12 flex items-center justify-center">
+                <KeyboardArrowRightIcon sx={{ fontSize: 108, color: 'white'}} />
+            </div>
 
         </div>
     )
