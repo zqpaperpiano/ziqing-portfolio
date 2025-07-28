@@ -2,6 +2,7 @@ import React, { useContext, useMemo } from "react";
 import NavBar from "../NavBar/NavBar";
 import { useParams } from "react-router";
 import { ListOfProjects } from "../../data/ListOfProjects";
+import SkillCarousel from "./components/SkillCarousel";
 
 const Skills:React.FC = () => {
     const {category, skill} = useParams<{category: string, skill: string}>();
@@ -16,7 +17,7 @@ const Skills:React.FC = () => {
                 <NavBar />
             </div>
 
-            <div className="w-full flex-1 min-h-7/8 flex font-[Motiva Sans] justify-center relative z-20 p-2"
+            <div className="w-full flex-1 min-h-7/8 flex font-[Motiva Sans] justify-center relative z-20 pt-2 pb-4"
             style={{
                 backgroundImage: `url(/assets/SkillBackgrounds/${category}.png)`,
                 backgroundSize: 'cover',
@@ -24,10 +25,18 @@ const Skills:React.FC = () => {
                 backgroundRepeat: 'no-repeat'
             }}
             >
-                <div className="w-full h-full absolute top-0 bg-[#283848] opacity-90 z-30"></div>
-                <div className="w-full h-1/3 flex items-center justify-center text-center text-5xl text-white font-bold uppercase z-40">
-                    {skill}
+                <div className="w-full h-full absolute top-0 section-bg opacity-90 z-30"></div>
+                <div className="w-7/8 h-full flex flex-col items-center justify-center gap-4 z-40">
+
+                    <div className="w-full h-1/5 flex items-center justify-center text-center text-5xl text-white font-bold uppercase z-40">
+                        {skill}
+                    </div>
+
+                    <div className="w-full h-4/5 flex items-center justify-center z-40">
+                        <SkillCarousel />
+                    </div>
                 </div>
+                
                 
                 
             </div>
