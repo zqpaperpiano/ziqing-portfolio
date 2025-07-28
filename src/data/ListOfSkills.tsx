@@ -24,8 +24,8 @@ export interface categoryTypes {
 // ]
 
 export const ListOfSkills: categoryTypes = {
-    'Language': ['Javacscript', 'TypeScript', 'HTML', 'CSS'],
-    'Framework': ['React', 'Express.js', 'Node.js'],
+    'Language': ['Javascript', 'TypeScript', 'HTML', 'CSS'],
+    'Frameworks': ['React', 'Express.js', 'Node.js'],
     'Libraries': ['React Router', 'MUI', 'Luicide React', 'Tailwind CSS', 'Framer Motion'],
     'Database': ['Firestore', 'MongoDB'],
     'DevOps': ['Docker', 'Git'],

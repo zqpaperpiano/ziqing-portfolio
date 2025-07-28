@@ -119,6 +119,7 @@ const NavBar: React.FC = () => {
                                         {
                                             skills.map((skill, skillIndex) => (
                                                 <div 
+                                                onClick={() => navigate(`/skills/${category.toLowerCase()}/${skill.toLowerCase()}`)}
                                                 key={skillIndex} 
                                                 className="text-[#c8c9cb] text-sm hover:cursor-pointer hover:text-white hover:underline hover:underline-offset-4 hover:decoration-2">
                                                     {skill}
