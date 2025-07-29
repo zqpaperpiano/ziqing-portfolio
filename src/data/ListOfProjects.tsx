@@ -28,7 +28,8 @@ export const ListOfProjects: ProjectDetails[] = [
             'MUI',
             'Luicide React',
             'Docker',
-            'Framer Motion'
+            'Framer Motion',
+            'Node.js'
         ],
         snippet: 'This is a planner that takes on an adventurering theme to help track big goals and break them into smaller and doable tasks.',
         releaseDate: '29 Mar 2025',
