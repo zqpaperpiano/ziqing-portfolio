@@ -3,7 +3,7 @@ import SkillTags from "../../SkillTags/SkillTags";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { ProjectDetails } from "../../../types/projectType";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Paginator from "./Paginator";
 import DoneIcon from '@mui/icons-material/Done';
 
@@ -50,6 +50,15 @@ const SkillCarousel = ({ project }: SkillCarouselProps) => {
             setCountdown(10);
         }
     }, [autoAdvance])
+
+    useEffect(() => {
+        setProgress(0);
+        setCountdown(10);
+
+        if(autoAdvance){
+            setStartTime(Date.now());
+        }
+    }, [currIndex]);
 
     useEffect(() => {
     if (projectLength <= 1 || !autoAdvance || isHovered) return;
@@ -148,7 +157,7 @@ const SkillCarousel = ({ project }: SkillCarouselProps) => {
                 </div>
 
                 <div className="h-1/6 w-full flex items-center justify-center">
-                    <Paginator total={projectLength || 0} curr={currProj.no || 0} />
+                    <Paginator total={projectLength || 0} curr={currProj.no || 0} setCurrIndex={setCurrIndex} />
                 </div>
             </div>
 

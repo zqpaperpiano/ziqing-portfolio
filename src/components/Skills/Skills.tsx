@@ -1,10 +1,8 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import NavBar from "../NavBar/NavBar";
 import { useParams } from "react-router";
 import { ListOfProjects } from "../../data/ListOfProjects";
 import SkillCarousel from "./components/SkillCarousel";
-import Paginator from "./components/Paginator";
-import { ProjectDetails } from "../../types/projectType";
 
 const Skills:React.FC = () => {
     const {category, skill} = useParams<{category: string, skill: string}>();
