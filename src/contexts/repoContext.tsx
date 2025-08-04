@@ -17,6 +17,8 @@ export const RepoProvider: React.FC<{ children: React.ReactNode; }> = ({ childre
                             'Content-Type': 'application/json'
                         }
                     });
+
+                    console.log('hello here!');
     
                     if(resp.ok){
                         const data = await resp.json();
