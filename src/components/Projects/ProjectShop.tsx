@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, useRef, useCallback, Fragment } from 'rea
 import NavBar from '../NavBar/NavBar';
 import { useParams } from 'react-router';
 import { ListOfProjects } from '../../data/ListOfProjects';
-import './projectShop.css'
+import './projectShop.css';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import SkillTags from '../SkillTags/SkillTags';
