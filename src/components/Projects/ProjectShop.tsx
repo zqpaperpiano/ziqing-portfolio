@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState, useRef, useCallback } from 'react';
+import { useEffect, useMemo, useState, useRef, useCallback, Fragment } from 'react';
 import NavBar from '../NavBar/NavBar';
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { ListOfProjects } from '../../data/ListOfProjects';
 import './projectShop.css'
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
@@ -51,7 +51,6 @@ const ProjectShop: React.FC = () => {
     const descContainer = useRef<HTMLDivElement>(null);
     const [descContainerHeight, setDescContainerHeight] = useState<number>(0);
     const [readMore, setReadMore] = useState<boolean>(false);
-    const navigate = useNavigate();
 
     useEffect(() => {
         if(descContainerHeight > 200){
@@ -219,10 +218,10 @@ const ProjectShop: React.FC = () => {
                     <div className="flex flex-row gap-2 justify-start items-end text-[#828c91] text-xs font-regular">
                         {
                             breadcrumbs.map((crumb, index) => (
-                                <React.Fragment key={index}>
+                                <Fragment key={index}>
                                     {crumb}
                                     {index < breadcrumbs.length - 1 && <span> {'>'} </span>}
-                                </React.Fragment>
+                                </Fragment>
                             ))
                         }
                     </div>

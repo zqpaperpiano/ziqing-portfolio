@@ -1,10 +1,10 @@
-import React, { createContext, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
 import { repoListType } from "../types/repoListType";
 
 export const RepoContext = createContext<repoListType[]>([]);
 
 export const RepoProvider: React.FC<{ children: React.ReactNode; }> = ({ children }) => {
-    const [repoList, setRepoList] = React.useState<repoListType[]>([]);
+    const [repoList, setRepoList] = useState<repoListType[]>([]);
     const sessionStorageKey = 'repoList';
 
     useEffect(() => {
@@ -76,7 +76,7 @@ export const RepoProvider: React.FC<{ children: React.ReactNode; }> = ({ childre
                 const data = await resp.json();
                 let numCommits = 0;
 
-                data.forEach(commit => {
+                data.forEach((commit: any) => {
                     if(commit.commit.author.name === 'Ong Zi Qing' || commit.commit.author.name === 'zqpaperpiano' || commit.commit.author.name === 'Github'){
                         numCommits++;
                     }

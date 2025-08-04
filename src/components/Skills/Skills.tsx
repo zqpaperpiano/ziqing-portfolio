@@ -1,8 +1,7 @@
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import NavBar from "../NavBar/NavBar";
 import { useParams } from "react-router";
 import { ListOfProjects } from "../../data/ListOfProjects";
-import SkillCarousel from "./components/SkillCarousel";
 import ProjectList from "../Projects/components/ProjectList";
 import FullSkillCarousel from "./components/FullSkillCarousel";
 

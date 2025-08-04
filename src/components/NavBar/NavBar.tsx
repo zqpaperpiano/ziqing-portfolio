@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import logo from '/assets/logo-no-animation.png';
 import { Github, Linkedin } from 'lucide-react';
 import { useLocation, useNavigate } from "react-router";

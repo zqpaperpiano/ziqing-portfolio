@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import '../../index.css'
 import NavBar from "../NavBar/NavBar";
 import { ListOfProjects } from "../../data/ListOfProjects";
-import SkillTags from "../SkillTags/SkillTags";
 import { useNavigate } from "react-router";
 
 const HomePage: React.FC = () => {
