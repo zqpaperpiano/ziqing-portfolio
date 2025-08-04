@@ -389,7 +389,7 @@ const ProjectShop: React.FC = () => {
                         {
                             !readMore &&
                             <>
-                            <div className="bg-black absolute w-full h-[30px] bottom-0 opacity-30">
+                            <div className="bg-gradient-to-b from-[#000000]/0 to-[#000000]/70 absolute w-full h-[30px] bottom-0 opacity-30">
                             
                             </div>
                             <div className="absolute w-full h-[30px] bottom-0">

@@ -3,6 +3,7 @@ import '../../index.css'
 import NavBar from "../NavBar/NavBar";
 import { ListOfProjects } from "../../data/ListOfProjects";
 import SkillTags from "../SkillTags/SkillTags";
+import { useNavigate } from "react-router";
 
 const HomePage: React.FC = () => {
     const recommendedProject = ListOfProjects[0];
@@ -10,6 +11,7 @@ const HomePage: React.FC = () => {
     const [currPicIndex, setCurrPicIndex] = useState<number>(0);
     const [currPic, setCurrPic] = useState<string>(recommendedProject.shopImg);
     const [isHover, setIsHover] = useState<boolean>(false);
+    const navigate = useNavigate();
     
     useEffect(() => {
         if(!isHover){
@@ -41,7 +43,9 @@ const HomePage: React.FC = () => {
                 {/* main content */}
                 <div className="h-full w-3/5 flex flex-col py-2">
                     <div className="h-12 uppercase flex items-center">Featured and recommended</div>
-                    <div className="h-4/5 w-full bg-gradient-to-r from-[#1b2d40 ] via-[#213d59] to-[#1b2d40] shadow-2xl">
+                    <div 
+                    onClick={() => navigate(`/projects/${recommendedProject.no}`)}
+                    className="h-4/5 w-full bg-gradient-to-r from-[#1b2d40 ] via-[#213d59] to-[#1b2d40] shadow-2xl">
                         <div className="w-full h-9/10 bg-[#0c151f] rounded-xs shadow-3xl flex">
                             <div className="h-full w-2/3 z-40 shadow-3xl">
                                 <div className="h-full w-full object-fit">
