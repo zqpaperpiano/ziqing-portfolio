@@ -4,6 +4,7 @@ import { useParams } from "react-router";
 import { ListOfProjects } from "../../data/ListOfProjects";
 import SkillCarousel from "./components/SkillCarousel";
 import ProjectList from "../Projects/components/ProjectList";
+import FullSkillCarousel from "./components/FullSkillCarousel";
 
 const Skills:React.FC = () => {
     const {category, skill} = useParams<{category: string, skill: string}>();
@@ -42,7 +43,7 @@ const Skills:React.FC = () => {
                 {skill}
             </div>
             <div className="w-full h-full">
-                <SkillCarousel project={projectList} />
+                <FullSkillCarousel project={projectList} onSkills={true}/>
             </div>
             </div>
         </div>

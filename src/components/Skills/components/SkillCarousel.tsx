@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router";
 import SkillTags from "../../SkillTags/SkillTags";
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+
 import { ProjectDetails } from "../../../types/projectType";
 import { useEffect, useState } from "react";
 import Paginator from "./Paginator";
@@ -9,10 +8,11 @@ import DoneIcon from '@mui/icons-material/Done';
 
 interface SkillCarouselProps {
     project: ProjectDetails[];
+    onSkills: boolean;
 
 }
 
-const SkillCarousel = ({ project }: SkillCarouselProps) => {
+const SkillCarousel = ({ project, onSkills }: SkillCarouselProps) => {
     const navigate = useNavigate();
     const projectLength = project.length || 0;
     const [currIndex, setCurrIndex] = useState<number>(0);
@@ -82,19 +82,15 @@ const SkillCarousel = ({ project }: SkillCarouselProps) => {
     return(
         <div className="h-full w-full flex items-center justify-center">
 
-            {/* left arrow */}
-            <div className="h-full w-16 flex items-center justify-center">
-                <KeyboardArrowLeftIcon sx={{ fontSize: 108, color: 'white'}} />   
-            </div>
-
             
 
-            <div className="h-full w-6/8 flex-col">
+            <div className={`h-full w-full flex-col`}>
+                
                 {/* actual carousel content */}
                 <div 
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
-                className="h-5/6 w-full bg-[#292d36] flex-col shadow-xl">
+                className={`${onSkills ? 'h-5/6  bg-[#292d36]' : 'h-full'} w-full flex-col shadow-xl`}>
                     <div className="h-9/10 w-full flex">
                         {/* image/video content here */}
                         <div 
@@ -126,45 +122,42 @@ const SkillCarousel = ({ project }: SkillCarouselProps) => {
                         </div>
                     </div>
 
-                    <div className="h-1/10 w-full flex text-[#667078] relative">
-                        <div 
-                        onClick={() => {setAutoAdvance(!autoAdvance)}}
-                        className="h-full w-28 flex items-center justify-center gap-2 text-xs absolute right-0 whitespace-nowrap hover:cursor-pointer hover:text-white group">
-                            <div className="h-[16px] aspect-square bg-[#060a0f] flex items-center justify-center">
-                            {autoAdvance && (
-                                <DoneIcon className="text-[#115289] group-hover:text-[#1a98ff]" />
-                            )}
-                            </div>
-                            <div>Auto Advance</div>
-                        </div>
-                        {
-                            autoAdvance && (
-                                    <div className="h-full w-1/2 flex items-center justify-center gap-2 absolute right-32 text-xs whitespace-nowrap">
-                                        <div className="h-full w-1/3 flex items-center justify-end">
-                                            {
-                                                isHovered ? 
-                                                <div>Paused while mouse is hovering</div> :
-                                                <div className="text-white">Next Project in {countdown} seconds</div>
-                                            }
-                                        </div>
-                                        <div className="w-2/3 h-1 rounded-xs bg-[#1b2024] overflow-hidden">
-                                            <div className="rounded-xs h-1 bg-[#9c9ea0] transition-all duration-75" style={{width: `${progress}%`}}></div>
-                                        </div>
+                    {
+                        onSkills &&
+                            <div className="h-1/10 w-full flex text-[#667078] relative">
+                                <div 
+                                onClick={() => {setAutoAdvance(!autoAdvance)}}
+                                className="h-full w-28 flex items-center justify-center gap-2 text-xs absolute right-0 whitespace-nowrap hover:cursor-pointer hover:text-white group">
+                                    <div className="h-[16px] aspect-square bg-[#060a0f] flex items-center justify-center">
+                                    {autoAdvance && (
+                                        <DoneIcon className="text-[#115289] group-hover:text-[#1a98ff]" />
+                                    )}
                                     </div>
-                            )
-                        }
-                    </div>
+                                    <div>Auto Advance</div>
+                                </div>
+                                {
+                                    autoAdvance && (
+                                            <div className="h-full w-1/2 flex items-center justify-center gap-2 absolute right-32 text-xs whitespace-nowrap">
+                                                <div className="h-full w-1/3 flex items-center justify-end">
+                                                    {
+                                                        isHovered ? 
+                                                        <div>Paused while mouse is hovering</div> :
+                                                        <div className="text-white">Next Project in {countdown} seconds</div>
+                                                    }
+                                                </div>
+                                                <div className="w-2/3 h-1 rounded-xs bg-[#1b2024] overflow-hidden">
+                                                    <div className="rounded-xs h-1 bg-[#9c9ea0] transition-all duration-75" style={{width: `${progress}%`}}></div>
+                                                </div>
+                                            </div>
+                                    )
+                                }
+                            </div>
+                    }
                 </div>
 
                 <div className="h-1/6 w-full flex items-center justify-center">
                     <Paginator total={projectLength || 0} curr={currProj.no || 0} setCurrIndex={setCurrIndex} />
                 </div>
-            </div>
-
-
-            {/* right arrow */}
-            <div className="h-full w-16 flex items-center justify-center">
-                <KeyboardArrowRightIcon sx={{ fontSize: 108, color: 'white'}} />
             </div>
 
         </div>
